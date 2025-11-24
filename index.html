@@ -199,10 +199,13 @@
       <div class="content has-text-justified is-centered">
         <ul class="column is-centered has-text-justified">
         <li>
-          We train an SVM to classify identity attributes (e.g., bald, beard, rosy cheeks) in the identity space.
+          Using a labeled dataset of identity attributes, we discover directions for specific attributes (e.g., bald, beard, rosy cheeks) in the identity space through two supervised approaches.
         </li>
         <li>
-          We use the normal to the SVM hyperplane as the direction that corresponds to the attribute.
+          The first approach calculates the mean identity representation with and without an attribute, then uses the difference between them as a direction to control that attribute.
+        </li>
+        <li>
+          The second approach trains an SVM to classify identity attributes, then uses the normal to the SVM hyperplane as the direction that corresponds to the attribute.
         </li>
         <li>
           Each row shows a different source identity (leftmost column) and its edits along three directions.
@@ -219,7 +222,7 @@
     <div class="columns is-centered has-text-centered">
     <div class="column is-four-fifths">
       <h2 class="title is-3">Unsupervised directions</h2>
-      <img src="static/images/unsupervised_directions_transparent.png">
+      <img src="static/images/unsupervised_directions_transparent.png" style="width: 1450px;">
       <div class="content has-text-justified is-centered">
         <ul class="c column is-centered has-text-justified">
         <li class="c">
