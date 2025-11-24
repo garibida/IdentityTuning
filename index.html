@@ -147,15 +147,37 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
+        <h2 class="title is-3">Token behavior in the personalization encoder</h2>
+        <img class="my-image" src="static/images/attn_maps_transparent.png" style="width: 500px;">
+        <div class="content has-text-justified is-centered">
+          <ul class="column is-centered has-text-justified">
+            <li>
+              Visualizing the attention maps of the personalization encoder reveals that identity tokens capture different facial regions.
+            </li>
+            <li>
+              Different tokens specialize in capturing specific features such as eyes, nose, and mouth, demonstrating the spatial and semantic structure of the identity space.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light is-small is-centered">
+<!-- <section class="section" style="align-content: center;"> -->
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
         <h2 class="title is-3">How does it work?</h2>
-        <img class="my-image" src="static/images/identity_editing_overview.jpg" style="width: 750px;">
+        <img class="my-image" src="static/images/identity_editing_overview.png" style="width: 750px;">
         <div class="content has-text-justified is-centered">
           <ul class="column is-centered has-text-justified">
             <li>
               An input image is encoded using a pre-trained personalization encoder into a set of identity tokens.
             </li>
             <li>
-              Each token captures a distinct aspect of the face (e.g., eyes, nose, or hair).
+              Each token captures a distinct aspect of the face (e.g., eyes, nose, or hair), which we identify using patch editing as described later.
             </li>
             <li>
               These tokens reside in an identity space, where meaningful directions (e.g., curly hair) can be discovered and traversed to achieve targeted edits.
@@ -170,7 +192,7 @@
   </div>
 </section>
 
-<section class="section hero is-light is-small is-centered">
+<section class="section">
   <div class="container is-max-desktop is-centered has-text-centered">
       <h2 class="title is-3">Supervised directions</h2>
       <img class="my-image" src="static/images/supervised_directions.png" style="width: 1450px;">
@@ -192,12 +214,12 @@
   </div>
 </section>
 
-<section class="section hero is-small is-centered" style="align-content: center;">
+<section class="section hero is-light is-small is-centered" style="align-content: center;">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
     <div class="column is-four-fifths">
       <h2 class="title is-3">Unsupervised directions</h2>
-      <img src="static/images/unsupervised_directions.png">
+      <img src="static/images/unsupervised_directions_transparent.png">
       <div class="content has-text-justified is-centered">
         <ul class="c column is-centered has-text-justified">
         <li class="c">
@@ -222,7 +244,7 @@
   </div>
 </section>
 
-<section class="section hero is-light is-small is-centered">
+<section class="section hero is-small is-centered">
   <div class="container is-max-desktop is-centered has-text-centered">
       <h2 class="title is-3">Identity-Based Directions</h2>
       <img class="my-image" src="static/images/blending_results_transparent.png" style="width: 1450px;">
@@ -247,7 +269,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section hero is-light is-small is-centered">
   <div class="container is-max-desktop is-centered has-text-centered">
       <h2 class="title is-3">Patch Editing</h2>
       <img class="my-image" src="static/images/patch_editing_transparent.png" style="width: 500px;">
