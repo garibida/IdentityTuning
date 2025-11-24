@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Latent-Identity Tuning in Text-to-Image Personalization Models</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBKFF5WPJF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-KBKFF5WPJF');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Latent-Identity Tuning in Text-to-Image Personalization Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://garibida.github.io/danielgaribi/">Daniel Garibi</a><sup>1,2</sup>&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=iw&user=GGcb3ksAAAAJ">Ronen Kamenetsky</a><sup>1</sup>&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://wangkua1.github.io/">Kuan-Chieh Jackson Wang</a><sup>2</sup>&nbsp;
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://www.hadarelor.com/">Hadar Averbuch-Elor</a><sup>3</sup>&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://orpatashnik.github.io/">Or Patashnik</a><sup>1,2</sup>&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://danielcohenor.com/">Daniel Cohen-Or</a><sup>1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Tel-Aviv University</span> &nbsp &nbsp
+            <span class="author-block"><sup>2</sup>Snap Research</span> &nbsp &nbsp
+            <span class="author-block"><sup>3</sup>Cornell University</span>
+          </div>
+
+          <br>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2510.05081"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/ronen94/SAEdit"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <!-- <img src="static/images/teaser_site.jpg"> -->
+       <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="1">
+         <img src="static/images/teaser/teaser.png" style="width: 90%; display: block; margin: auto;">
+         <img src="static/images/teaser/teaser_2.png" style="width: 90%; display: block; margin: auto;">
+       </div>
+      <h2 class="subtitle has-text-centered">
+        We present methods for directly tuning the identity tokens of a personalization encoder, enabling fine-grained control of facial attributes, for example modifying the nose, adding freckles, or adding a beard (top).
+        The edited identity can then be used across diverse prompts to generate the same tuned subject consistently in new scenes (bottom).
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light is-small">
+    <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Generating and editing a person's face demands high precision, as even minor modifications can significantly alter a subject’s perceived identity. 
+            Current personalization and editing methods built on general-purpose text-to-image models, however, often lack the precision required for fine-grained facial edits.
+            We present a method for fine-grained identity tuning in text-to-image personalization models.
+            Unlike standard image editing, which operates on a given image, identity tuning modifies the latent representation of a specific identity, enabling the generation of diverse images that consistently depict the same edited identity.
+            To enable fine-grained latent identity tuning, we explore the latent space of an encoder trained for text-to-image personalization.
+            This space consists of a set of latent tokens that play distinct roles in capturing different aspects of an identity
+            and often correspond to specific spatial or semantic facial regions.
+            We show that meaningful directions can be identified within this space and within subspaces defined by selected tokens, enabling localized, fine-grained, and semantically coherent edits.
+            We validate our approach through qualitative and quantitative experiments that demonstrate diverse localized facial edits while preserving cross-image identity consistency.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="align-content: center;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">How does it work?</h2>
+        <img class="my-image" src="static/images/identity_editing_overview.jpg" style="width: 750px;">
+        <div class="content has-text-justified is-centered">
+          <ul class="column is-centered has-text-justified">
+            <li>
+              An input image is encoded using a pre-trained personalization encoder into a set of identity tokens.
+            </li>
+            <li>
+              Each token captures a distinct aspect of the face (e.g., eyes, nose, or hair).
+            </li>
+            <li>
+              These tokens reside in an identity space, where meaningful directions (e.g., curly hair) can be discovered and traversed to achieve targeted edits.
+            </li>
+            <li>
+              The modified identity tokens are then passed to a text-to-image model, which generates images of the edited identity in diverse contexts.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light is-small is-centered">
+  <div class="container is-max-desktop is-centered has-text-centered">
+      <h2 class="title is-3">Supervised directions</h2>
+      <img class="my-image" src="static/images/supervised_directions.png" style="width: 1450px;">
+      <div class="content has-text-justified is-centered">
+        <ul class="column is-centered has-text-justified">
+        <li>
+          We train an SVM to classify identity attributes (e.g., bald, beard, rosy cheeks) in the identity space.
+        </li>
+        <li>
+          We use the normal to the SVM hyperplane as the direction that corresponds to the attribute.
+        </li>
+        <li>
+          Each row shows a different source identity (leftmost column) and its edits along three directions.
+          The images in each column are generated by adding the same direction.
+          For each edit, we show the main result with two alternative prompts stacked vertically to the right.
+        </li>
+        </ul>
+      </div>
+  </div>
+</section>
+
+<section class="section hero is-small is-centered" style="align-content: center;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Unsupervised directions</h2>
+      <img src="static/images/unsupervised_directions.png">
+      <div class="content has-text-justified is-centered">
+        <ul class="c column is-centered has-text-justified">
+        <li class="c">
+          We apply PCA on the identity space to discover directions that capture the most variance in facial appearance.
+        </li>
+        <li class="c">
+          PCA can be applied either globally (on all tokens) or locally (on a specific subset of tokens).
+        </li>
+        <li class="c">
+          To achieve localized edits, we first identify which tokens correspond to a specific facial region, then apply PCA only on those tokens.
+        </li>
+        <li class="c">
+          The resulting principal components serve as edit directions.
+        </li>
+        <li class="c">
+          Each row shows a different source identity (leftmost column) and its transformations along three unsupervised directions.
+          From left to right, we show edits applied via: a direction from a single token, a direction from all tokens, and a direction from a subset of tokens.
+        </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light is-small is-centered">
+  <div class="container is-max-desktop is-centered has-text-centered">
+      <h2 class="title is-3">Identity-Based Directions</h2>
+      <img class="my-image" src="static/images/blending_results_transparent.png" style="width: 1450px;">
+      <div class="content has-text-justified is-centered">
+        <ul class="column is-centered has-text-justified">
+        <li>
+          We can transfer specific facial features from one identity to another by blending their token representations.
+        </li>
+        <li>
+          First, we encode both a main identity and a donor identity into their respective identity tokens.
+        </li>
+        <li>
+          Then, we replace specific tokens in the main identity (e.g., those corresponding to the lips) with the corresponding tokens from the donor, effectively transferring that facial feature.
+        </li>
+        <li>
+          In each grid, the leftmost column shows the main identity, and each subsequent column shows the result of transferring one facial part from the donor shown at the top.
+          The left grid demonstrates transfers of the periocular region (eyelids and eyebrows), while the right grid shows lip transfers.
+          All other facial attributes and the background remain unchanged.
+        </li>
+        </ul>
+      </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop is-centered has-text-centered">
+      <h2 class="title is-3">Patch Editing</h2>
+      <img class="my-image" src="static/images/patch_editing_transparent.png" style="width: 500px;">
+      <div class="content has-text-justified is-centered">
+        <ul class="column is-centered has-text-justified">
+        <li>
+          To identify which tokens correspond to a specific facial feature, we use a patch-based approach.
+        </li>
+        <li>
+          We create multiple variants of an identity by pasting different patches (e.g., different lips) onto the same face before encoding.
+        </li>
+        <li>
+          By observing which tokens change the most across these variants, we can identify the tokens responsible for that facial feature.
+        </li>
+        <li>
+          Interestingly, this approach can also be used directly for editing: by pasting a desired facial element (e.g., a specific beard style) onto an identity before encoding, we can seamlessly add that element to the generated images.
+        </li>
+        </ul>
+      </div>
+  </div>
+</section>
+
+<section class="section is-light" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      TBD
+    </code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the <a href="https://nerfies.github.io/">Nerfies</a> project page. If you want to reuse their <a href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
